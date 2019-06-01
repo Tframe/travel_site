@@ -3,28 +3,79 @@
 <head>
         <meta charset="utf-8">
         <title>What's Your Six? | Cities</title>
-        <link href = '../style.css' rel = 'stylesheet' type = 'text/css'>
+
+                <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+                <link rel="stylesheet" href="assets/css/create-profile.css">
+ 
 </head>
 <body>
-  <h2>What's Your Six Group's Database. </h2>
-  <h4> Menu of operations</h4>
-   <ul class = "menu">
-        <li class = "homeButton"> <a href='/'>Home</a></li>
-        <li class = "menuButton"> <a href='/city'>List & Add Cities</a></li>
-        <li class = "menuButton"> <a href='/activity'>List & Add Activities</a></li>
-        <li class = "menuButton"> <a href='/hotel'>List & Add Hotels</a></li>
-        <li class = "menuButton"> <a href='/airline'>List & Add Airlines</a></li>
-        <li class = "menuButton"> <a href='/traveler'>List & Add Travelers</a></li>
-        <li class = "menuButton"> <a href='/activityprice'>List & Add Activity Prices</a></li>
-        <li class = "menuButton"> <a href='/hotelprice'>List & Add Hotel Prices</a></li>
-        <li class = "menuButton"> <a href='/airlineprice'>List & Add Airline Prices</a></li>
-        <li class = "menuButton"> <a href='/tripcriteria'>List & Add Trip Criteria</a></li>
-        <li class = "menuButton"> <a href='/destinationtype'>List & Add Destination Types</a></li>
-        <br>
+  <h2>What's Your Six Group's Database</h2>
+	<nav class="navbar navbar-default navbar-expand-md navbar-fixed-top" style="background-color: #212121; font-size: 17px; font-weight: bold">
+		<div id="group-brand" class="container-fluid">
+						<button data-toggle="collapse"
+						data-target="#navcol-3"
+						class="navbar-toggler">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navcol-3">
+						<ul class="nav navbar-nav">
+								<li role="presentation" class="nav-item">
+										<a href="index.html" class="nav-link active">
+												Home
+										</a>
+								</li>
+										<!--   <li role="presentation" class="nav-item">
+										<a href="tips.html" class="nav-link">
+												Current Trips
+										</a>
+								</li>
+								<li role="presentation" class="nav-item">
+										<a href="choose_a_trip.html" class="nav-link">
+												Plan a trip
+										</a>
+								</li>
+										-->
+								<li role="presentation" class="nav-item">
+										<a href="/city" class="nav-link">
+												Explore Cities
+										</a>
+								</li>
+								<li role="presentation" class="nav-item">
+										<a href="/hotel" class="nav-link">
+												Explore Hotels
+										</a>
+								</li>
+								<li role="presentation" class="nav-item">
+										<a href="/airline" class="nav-link">
+												Explore Airlines
+										</a>
+								</li>
+								<li role="presentation" class="nav-item">
+										<a href="/activity" class="nav-link">
+												Explore Activities
+										</a>
+								</li>
+								<li role="presentation" class="nav-item">
+										<a href="/traveler" class="nav-link">
+												Lookup Travelers
+										</a>
+								</li>
+								<li role="presentation" class="nav-item">
+										<a href="create-profile.html" class="nav-link">
+												Profile
+										</a>
+								</li>
+								<li role="presentation" class="nav-item">
+										<a href="#" class="nav-link"></a>
+								</li>
+						</ul>
+				</div>
+		</div>
+	</nav>
 
 
-  </ul>
-  <br/>
+
 
 <h3>Add new activity:</h3>
 <form id="addActivity" action="/activity" method="post">
@@ -44,10 +95,13 @@
 <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Filter by City </label>
     <select id='city_filter' name="city"> 
+		{{#each cities}}
+		<option value='{{id}}'>{{name}}</option>
+		{{/each}}
     </select><br>
     <input type="button" value="Filter" onclick="filterActivity()">
 </form>
-
+<br/>
 
 <h3>Current Activities:</h3>
 <table>
@@ -67,5 +121,12 @@
         </tr> 
         {{/each}} 
     </tbody> 
-</table> 
+</table>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/js/app.js"></script>
+                <script src="assets/js/create-profile.js"></script>
+        </body>
+ 
 </html>

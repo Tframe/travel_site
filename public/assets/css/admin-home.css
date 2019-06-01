@@ -1,0 +1,43 @@
+.dashboard {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10% 0;
+}
+
+.dashboard a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+.dashboard h5 {
+    opacity: 0.2;
+    -webkit-transition: opacity 0.25s;
+    -moz-transition: opacity 0.25s;
+    -ms-transition: opacity 0.25s;
+    transition: opacity 0.25s;
+}
+
+.dashboard svg {
+    width: 100px;
+    height: 100px;
+    margin: 40px;
+    
+    -webkit-transition: width 0.25s, height 0.25s, margin 0.25s;
+    -moz-transition: width 0.25s, height 0.25s, margin 0.25s;
+    -ms-transition: width 0.25s, height 0.25s, margin 0.25s;
+    transition: width 0.25s, height 0.25s, margin 0.25s;
+}
+
+.dashboard a:hover svg {
+    width: 150px;
+    height: 150px;
+
+    margin: 14px 15px;
+
+    opacity: 0.4;
+}
+
+.dashboard a:hover h5 {
+    opacity: 1;
+}

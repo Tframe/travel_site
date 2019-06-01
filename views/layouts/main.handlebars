@@ -1,13 +1,18 @@
 <!doctype html>
 <html>
 <head>
-	<title>Demo Page</title>
+	<title>What's Your 6</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     {{#each jsscripts}}
     <script src="/static/{{this}}"></script>
     {{/each}}
+    <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/assets/css/create-profile.css">
+
 </head>
 <body>
 	{{{body}}}
+	<script src="/public/assets/js/app.js"></script>
+	<script src="/public/assets/js/create-profile.js"></script>
 </body>
 </html>

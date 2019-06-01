@@ -46,7 +46,7 @@ module.exports = function(){
 	function filterActivitiesByCity(req, res, mysql, context, complete){
                 var query = "SELECT a.id, a.name, a.phone_number, a.city_id, c.name as cityName FROM Activity a INNER JOIN City c ON a.city_id = c.id WHERE a.city_id = ?";
                 console.log(req.params);
-                var inserts = [req.params.state];
+                var inserts = [req.params.city_id];
                 mysql.pool.query(query, inserts, function(error, results, fields){
                         if(error){
                                 res.write(JSON.stringify(error));
@@ -75,13 +75,13 @@ module.exports = function(){
 	});
 	
 	//filter by city id
-	router.get('/filter/:city', function(req, res){
+	router.get('/filter/:city_id', function(req, res){
                 var callbackCount = 0;
                 var context = {};
                 context.jsscripts = ["delete.js", "filter.js", "search.js"];
                 var mysql = req.app.get('mysql');
-                filterActivityByCity(req, res, mysql, context, complete);
-                getState(res, mysql, context, complete);
+                filterActivitiesByCity(req, res, mysql, context, complete);
+                getCityList(res, mysql, context, complete);
                 function complete(){
                         callbackCount++;
                         if(callbackCount >= 2){
@@ -89,7 +89,6 @@ module.exports = function(){
                         }
                 }
         });
-
 
 	//display single activity for update activity attributes
 	router.get('/:id', function(req, res){

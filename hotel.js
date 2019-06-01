@@ -16,7 +16,7 @@ module.exports = function(){
 	}
 
 	//function to display city list
-	function getCities(res, mysql, context, complete){
+	function getCityList(res, mysql, context, complete){
 		mysql.pool.query("SELECT c.id, c.name FROM City c", function(error, results, fields){
 			if(error){
 				res.write(JSON.stringify(error));
@@ -40,7 +40,21 @@ module.exports = function(){
 			complete();
 		});
 	}	
-
+	
+	//filty by city
+	function filterHotelsByCity(req, res, mysql, context, complete){
+                var query = "SELECT h.id, h.name, h.phone_number, h.city_id, c.name as cityName FROM Hotel h INNER JOIN City c ON h.city_id = c.id WHERE h.city_id = ?";
+                console.log(req.params);
+                var inserts = [req.params.city_id];
+                mysql.pool.query(query, inserts, function(error, results, fields){
+                        if(error){
+                                res.write(JSON.stringify(error));
+                                res.end();
+                        }
+                        context.hotel = results;
+                        complete();
+                });
+        }
 
 	//display hotels 
 	router.get('/', function(req, res){
@@ -59,6 +73,21 @@ module.exports = function(){
 		}
 	});
 
+	//filter by city id
+	router.get('/filter/:city_id', function(req, res){
+                var callbackCount = 0;
+                var context = {};
+                context.jsscripts = ["delete.js", "filter.js", "search.js"];
+                var mysql = req.app.get('mysql');
+                filterHotelsByCity(req, res, mysql, context, complete);
+                getCityList(res, mysql, context, complete);
+                function complete(){
+                        callbackCount++;
+                        if(callbackCount >= 2){
+                                res.render('hotel', context);
+                        }
+                }
+        });
 
 	//display single hotel for update attributes
 	router.get('/:id', function(req, res){

@@ -1,0 +1,38 @@
+#background {
+  background-blend-mode: screen;
+  min-height: 1000px;
+}
+
+.text-primary.border-primary.mb-5 {
+  text-shadow: 0.5px 0.5px 0.5px white;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  text-shadow: 0.5px 0.5px 0.5px;
+}
+
+.input-group > .input-group-append > .btn, .input-group > .input-group-append > .input-group-text, .input-group > .input-group-prepend:first-child > .btn:not(:first-child), .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child), .input-group > .input-group-prepend:not(:first-child) > .btn, .input-group > .input-group-prepend:not(:first-child) > .input-group-text {
+  text-shadow: 0.5px 0.5px 2px;
+}
+
+.dropdown-item {
+  text-shadow: 0.5px 0.5px 1px;
+}
+
+#search-list-row {
+  margin-top: 118px;
+  background-color: rgba(0,0,0,0.85);
+  display: none;
+}
+
+.search-list-rows {
+  background-color: rgba(0,0,0,0.85);
+}
+
+.navbar-light .navbar-brand, .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+  text-shadow: 0.5px 0.5px 0.5px;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+}
+

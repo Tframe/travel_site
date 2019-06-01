@@ -12,3 +12,11 @@ function filterActivity(){
 	//construct URL and redirect to it
 	window.location = '/activity/filter/' + parseInt(city_name)
 }
+
+function filterHotel(){
+	//get id of selected city from filter dropdown
+	var city_name = document.getElementById('city_filter').value
+	//construct URL and redirect to it
+	window.location = '/hotel/filter/' + parseInt(city_name)	
+
+}

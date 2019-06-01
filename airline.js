@@ -27,6 +27,32 @@ module.exports = function(){
 			complete();
 		});
 	}
+	//function to get list of cities
+        function getCityList(res, mysql, context, complete){
+                mysql.pool.query("SELECT c.id, c.name FROM City c", function(error, results, fields){
+                        if(error){
+                                res.write(JSON.stringify(error));
+                                res.end();
+                        }
+                        context.cities = results;
+                        complete();
+                });
+        }
+
+	//filter by city
+	function filterActivitiesByCity(req, res, mysql, context, complete){
+                var query = "SELECT a.id, a.name, a.phone_number, a.city_id, c.name as cityName FROM Activity a INNER JOIN City c ON a.city_id = c.id WHERE a.city_id = ?";
+                console.log(req.params);
+                var inserts = [req.params.city_id];
+                mysql.pool.query(query, inserts, function(error, results, fields){
+                        if(error){
+                                res.write(JSON.stringify(error));
+                                res.end();
+                        }
+                        context.airline = results;
+                        complete();
+                });
+        }
 	
 	//display airline
 	router.get('/', function(req, res){
@@ -43,7 +69,23 @@ module.exports = function(){
 			}
 		}
 	});
-	
+
+	//filter by city id	
+        router.get('/filter/:city_id', function(req, res){
+                var callbackCount = 0;
+                var context = {};
+                context.jsscripts = ["delete.js", "filter.js", "search.js"];
+                var mysql = req.app.get('mysql');
+                filterActivitiesByCity(req, res, mysql, context, complete);
+                getCityList(res, mysql, context, complete);
+                function complete(){
+                        callbackCount++;
+                        if(callbackCount >= 2){
+                                res.render('activity', context);
+                        }
+                }
+        });
+
 	//display single airline for pudating attributes
 	router.get('/:id', function(req, res){
 		var callbackCount = 0;
