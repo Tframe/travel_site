@@ -9,79 +9,12 @@
  
 </head>
 <body>
-  <h2>What's Your Six Group's Database</h2>
-	<nav class="navbar navbar-default navbar-expand-md navbar-fixed-top" style="background-color: #212121; font-size: 17px; font-weight: bold">
-		<div id="group-brand" class="container-fluid">
-						<button data-toggle="collapse"
-						data-target="#navcol-3"
-						class="navbar-toggler">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navcol-3">
-						<ul class="nav navbar-nav">
-								<li role="presentation" class="nav-item">
-										<a href="index.html" class="nav-link active">
-												Home
-										</a>
-								</li>
-										<!--   <li role="presentation" class="nav-item">
-										<a href="tips.html" class="nav-link">
-												Current Trips
-										</a>
-								</li>
-								<li role="presentation" class="nav-item">
-										<a href="choose_a_trip.html" class="nav-link">
-												Plan a trip
-										</a>
-								</li>
-										-->
-								<li role="presentation" class="nav-item">
-										<a href="/city" class="nav-link">
-												Explore Cities
-										</a>
-								</li>
-								<li role="presentation" class="nav-item">
-										<a href="/hotel" class="nav-link">
-												Explore Hotels
-										</a>
-								</li>
-								<li role="presentation" class="nav-item">
-										<a href="/airline" class="nav-link">
-												Explore Airlines
-										</a>
-								</li>
-								<li role="presentation" class="nav-item">
-										<a href="/activity" class="nav-link">
-												Explore Activities
-										</a>
-								</li>
-								<li role="presentation" class="nav-item">
-										<a href="/traveler" class="nav-link">
-												Lookup Travelers
-										</a>
-								</li>
-								<li role="presentation" class="nav-item">
-										<a href="create-profile.html" class="nav-link">
-												Profile
-										</a>
-								</li>
-								<li role="presentation" class="nav-item">
-										<a href="#" class="nav-link"></a>
-								</li>
-						</ul>
-				</div>
-		</div>
-	</nav>
-
-
-
 
 <h3>Add new activity:</h3>
 <form id="addActivity" action="/activity" method="post">
-    Activity name: <input type="text" name="name"><br>
-    Phone number: <input type="text" name="phone_number"><br>
-    City: <select name='city_id'>
+    Activity name:<br> <input type="text" name="name"><br>
+    Phone number: <br> <input type="text" name="phone_number"><br>
+    City: <br><select name='city_id'><br>
         {{#each cities}}
           <option value='{{id}}'>{{name}}</option>
         {{/each}}
@@ -104,11 +37,13 @@
 <br/>
 
 <h3>Current Activities:</h3>
-<table>
+<table id="tableFormat">
     <thead> 
         <th>Activity Name</th> 
         <th>Phone Number</th>
-		<th>City</th>
+	<th>City</th>
+	<th>Delete</th>
+	<th>Update</th>
     </thead> 
     <tbody>
         {{#each activity}} 

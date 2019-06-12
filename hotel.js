@@ -5,7 +5,7 @@ module.exports = function(){
 
 	//function to select hotel information
 	function getHotel(res, mysql, context, complete){
-		mysql.pool.query("SELECT Hotel.id, Hotel.name, Hotel.phone_number, City.name as cityName FROM Hotel INNER JOIN City ON Hotel.city_id = City.id ", function(error, results, fields){
+		mysql.pool.query("SELECT h.id, h.name, h.phone_number, c.name as cityName FROM Hotel h INNER JOIN City c ON h.city_id = c.id ", function(error, results, fields){
 			if(error){
 				res.write(JSON.stringify(error));
 				res.end();
@@ -64,7 +64,7 @@ module.exports = function(){
 		context.jsscripts = ["delete.js", "filter.js", "search.js"];
 		var mysql = req.app.get('mysql');
 		getHotel(res, mysql, context, complete);
-		getCities(res, mysql, context, complete);
+		getCityList(res, mysql, context, complete);
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= 2){
@@ -96,7 +96,7 @@ module.exports = function(){
 		context.jsscripts = ["select.js", "update.js"];
 		var mysql = req.app.get('mysql');
 		getHotelInfo(res, mysql, context, req.params.id, complete);
-		getCities(res, mysql, context, complete);
+		getCityList(res, mysql, context, complete);
 		function complete(){
 			callbackCount++;
 			if(callbackCount >= 2){

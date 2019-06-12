@@ -40,8 +40,8 @@ module.exports = function(){
         }
 
 	//filter by city
-	function filterActivitiesByCity(req, res, mysql, context, complete){
-                var query = "SELECT a.id, a.name, a.phone_number, a.city_id, c.name as cityName FROM Activity a INNER JOIN City c ON a.city_id = c.id WHERE a.city_id = ?";
+	function filterAirlinesByCity(req, res, mysql, context, complete){
+                var query = "SELECT a.id, a.name, a.phone_number, a.city_id, c.name as cityName FROM Airline a INNER JOIN City c ON a.city_id = c.id WHERE a.city_id = ?";
                 console.log(req.params);
                 var inserts = [req.params.city_id];
                 mysql.pool.query(query, inserts, function(error, results, fields){
@@ -76,12 +76,12 @@ module.exports = function(){
                 var context = {};
                 context.jsscripts = ["delete.js", "filter.js", "search.js"];
                 var mysql = req.app.get('mysql');
-                filterActivitiesByCity(req, res, mysql, context, complete);
+                filterAirlinesByCity(req, res, mysql, context, complete);
                 getCityList(res, mysql, context, complete);
                 function complete(){
                         callbackCount++;
                         if(callbackCount >= 2){
-                                res.render('activity', context);
+                                res.render('airline', context);
                         }
                 }
         });

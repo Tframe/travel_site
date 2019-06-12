@@ -99,3 +99,7 @@ div img {
 	text-decoration: none;
 	color: white;
 }
+
+#tableFormat{
+	border: 1px solid black;
+}

@@ -4,7 +4,7 @@ function updateCity(id){
 		type: 'PUT',
 		data: $('#update-city').serialize(),
 		success: function(result){
-			window.location.replace("./");
+			window.location.replace("/city");
 		}
 	})
 };
@@ -15,7 +15,7 @@ function updateHotel(id){
         type: 'PUT',
         data: $('#update-hotel').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("/hotel");
         }
     })
 };
@@ -26,7 +26,7 @@ function updateActivity(id){
         type: 'PUT',
         data: $('#update-activity').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("/activity");
         }
     })
 };
@@ -37,7 +37,7 @@ function updateAirline(id){
         type: 'PUT',
         data: $('#update-airline').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("/airline");
         }
     })
 };
@@ -48,7 +48,7 @@ function updateTraveler(id){
         type: 'PUT',
         data: $('#update-traveler').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("traveler");
         }
     })
 };
@@ -59,7 +59,7 @@ function updateActivityPrice(id){
         type: 'PUT',
         data: $('#update-activityprice').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("/activityprice");
         }
     })
 };
@@ -70,7 +70,7 @@ function updateHotelPrice(id){
         type: 'PUT',
         data: $('#update-hotelprice').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("/hotelprice");
         }
     })
 };
@@ -81,7 +81,7 @@ function updateAirlinePrice(id){
         type: 'PUT',
         data: $('#update-airlineprice').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("/airlineprice");
         }
     })
 };
@@ -92,7 +92,7 @@ function updateTripCriteria(id){
         type: 'PUT',
         data: $('#update-tripcriteria').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("/tripcriteria");
         }
     })
 };
@@ -103,7 +103,7 @@ function updateDestinationType(id){
         type: 'PUT',
         data: $('#update-destinationtype').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.replace("destinationtype");
         }
     })
 };
