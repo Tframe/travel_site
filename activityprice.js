@@ -5,7 +5,7 @@ module.exports = function(){
 	
 	//function to select activity price information
 	function getActivityPrices(res, mysql, context, complete){
-		mysql.pool.query("SELECT a.name, ap.activity_id, ap.book_date, ap.price FROM Activity_Price ap INNER JOIN Activity a ON ap.activity_id=a.id", function(error, results, fields){
+		mysql.pool.query("SELECT a.name, ap.activity_id, ap.book_date, ap.price FROM Activities_Price ap INNER JOIN Activities a ON ap.activity_id=a.id", function(error, results, fields){
 			if(error){
 				res.write(JSON.stringify(error));
 				res.end();
@@ -17,7 +17,7 @@ module.exports = function(){
 	
 	//function to select activity information
 	function getActivities(res, mysql, context, complete){
-		mysql.pool.query("SELECT a.id, a.name, a.phone_number, a.city_id FROM Activity a", function(error, results, fields){
+		mysql.pool.query("SELECT a.id, a.name, a.phone_number, a.city_id FROM Activities a", function(error, results, fields){
 			if(error){
 				res.write(JSON.stringify(error));
 				res.end();
@@ -48,7 +48,7 @@ module.exports = function(){
 	router.post('/', function(req, res){
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		var sql = "INSERT INTO Activity_Price (activity_id, book_date, price) VALUES (?,?,?)";
+		var sql = "INSERT INTO Activities_Price (activity_id, book_date, price) VALUES (?,?,?)";
 		var inserts = [req.body.activity_id, req.body.book_date, req.body.price];
 		sql = mysql.pool.query(sql,inserts,function(error, results, fields){
 			if(error){

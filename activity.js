@@ -5,7 +5,7 @@ module.exports = function(){
 
 	//function to select activity information
 	function getActivity(res, mysql, context, complete){
-		mysql.pool.query("SELECT a.id, a.name, a.phone_number, c.name as cityName FROM Activity a INNER JOIN City c ON a.city_id = c.id", function(error, results, fields){
+		mysql.pool.query("SELECT a.id, a.name, a.phone_number, c.name as cityName FROM Activities a INNER JOIN City c ON a.city_id = c.id", function(error, results, fields){
 			if(error){
 				res.write(JSON.stringify(error));
 				res.end();
@@ -18,7 +18,7 @@ module.exports = function(){
 	
 	//function to display single activity attributes for update
 	function getActivityInfo(res, mysql, context, id, complete){
-		var sql = "SELECT id, name, phone_number, city_id FROM Activity WHERE id = ?";
+		var sql = "SELECT id, name, phone_number, city_id FROM Activities WHERE id = ?";
 		var inserts = [id];
 		mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){
@@ -44,7 +44,7 @@ module.exports = function(){
 	
 	//filter by city
 	function filterActivitiesByCity(req, res, mysql, context, complete){
-                var query = "SELECT a.id, a.name, a.phone_number, a.city_id, c.name as cityName FROM Activity a INNER JOIN City c ON a.city_id = c.id WHERE a.city_id = ?";
+                var query = "SELECT a.id, a.name, a.phone_number, a.city_id, c.name as cityName FROM Activities a INNER JOIN City c ON a.city_id = c.id WHERE a.city_id = ?";
                 console.log(req.params);
                 var inserts = [req.params.state];
                 mysql.pool.query(query, inserts, function(error, results, fields){
@@ -113,7 +113,7 @@ module.exports = function(){
 		var mysql = req.app.get('mysql');
 		console.log(req.body)
 		console.log(req.params.id)
-		var sql = "UPDATE Activity SET name=?, phone_number=?, city_id=? WHERE id=?";
+		var sql = "UPDATE Activities SET name=?, phone_number=?, city_id=? WHERE id=?";
 		var inserts = [req.body.name, req.body.phone_number, req.body.city_id, req.params.id];
 		sql = mysql.pool.query(sql,inserts,function(error, results, fields){
 			if(error){
@@ -131,7 +131,7 @@ module.exports = function(){
 	router.post('/', function(req, res){
 		console.log(req.body)
 		var mysql = req.app.get('mysql');
-		var sql = "INSERT INTO Activity (name, phone_number, city_id) VALUES (?,?,?)";
+		var sql = "INSERT INTO Activities (name, phone_number, city_id) VALUES (?,?,?)";
 		var inserts = [req.body.name, req.body.phone_number, req.body.city_id];
 		sql = mysql.pool.query(sql,inserts,function(error, results, fields){
 			if(error){
@@ -147,7 +147,7 @@ module.exports = function(){
 	//route to delete activity
 	router.delete('/:id', function(req,res){
 		var mysql = req.app.get('mysql');
-		var sql = "DELETE FROM Activity WHERE id = ?";
+		var sql = "DELETE FROM Activities WHERE id = ?";
 		var inserts = [req.params.id];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 			if(error){
